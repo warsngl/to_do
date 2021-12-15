@@ -1,5 +1,16 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './index.css'
+import './assets/index.css'
+import { createRouter,createWebHistory } from 'vue-router'
+import AllTodos from './view/AllTodos.vue'
+import {store} from './store/index.js'
+const routes=[
+  {path:'/',component:AllTodos},
+  {path:'/:filter',component:AllTodos},
+]
+const router=createRouter({
+  history:createWebHistory(),
+  routes,
+})
 
-createApp(App).mount('#app')
+createApp(App).use(router).use(store).mount('#app')
