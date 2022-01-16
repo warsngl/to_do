@@ -3,7 +3,7 @@ import App from './App.vue'
 import './assets/index.css'
 import { createRouter,createWebHistory } from 'vue-router'
 import AllTodos from './view/AllTodos.vue'
-import {store} from './store/index.js'
+import store from './store'
 const routes=[
   {path:'/',component:AllTodos},
   {path:'/:filter',component:AllTodos},

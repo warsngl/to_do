@@ -25,7 +25,7 @@ export default {
       return this.$store.getters.undoneCount
     },
     isDisabled(){
-      return this.$store.getters.isDisabled
+      return this.$store.getters.isClearButtonDisabled
     }
   },
 }

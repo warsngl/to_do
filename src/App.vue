@@ -8,7 +8,7 @@ export default{
   },
   created(){
     const todos=JSON.parse(localStorage.getItem('todos'))
-    todos ? this.$store.commit('fillStore',todos) : null
+    todos && this.$store.commit('fillStore',todos)
   },
 }
 </script>
@@ -17,13 +17,13 @@ export default{
 .flex.flex-col.h-full.items-center
   h1.text-violet-600.text-2xl.font-bold Simple VoodooList
   AddTodo
-  TodoList(class='grow')
+  TodoList.grow
   NavBar.w-full
 </template>
 
 <style>
 #app {
-  height:100vh;
+  height: 100vh;
   padding: 10px;
   font-family: 'Pangolin', cursive;
   -webkit-font-smoothing: antialiased;
@@ -31,4 +31,5 @@ export default{
   text-align: center;
   color: #2c3e50;
 }
+
 </style>

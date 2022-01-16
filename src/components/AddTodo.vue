@@ -1,5 +1,5 @@
 <template lang='pug'>
-input(v-model='newTodo' @keydown.enter="addTodo" placeholder='What needs to be done?')
+input.pl-4(v-model='newTodo' @keydown.enter="addTodo" placeholder='What needs to be done?')
 </template>
 
 <script>

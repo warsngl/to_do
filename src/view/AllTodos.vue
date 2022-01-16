@@ -1,8 +1,10 @@
 <template lang='pug'>
-ul.mx-auto
-  li.flex.items-center(v-for='i in filteredTodos' :key='i.id' @click='checkTodo(i.id)')
-    input(type='checkbox' class='-mt-1 mr-2' v-model='i.isChecked' @click.stop="checkTodo(i.id)")
-    p(:class="i.isChecked && 'line-through'") {{i.name}}
+p(v-if='filteredTodos.length===0') No Todos
+ul.mx-auto(v-else)
+  li.flex.items-center(v-for='t in filteredTodos' :key='t.id')
+    input.opacity-0.absolute.w-full.cursor-pointer(:id='t.id' type='checkbox' @change="checkTodo(t.id)")
+    input.mr-2(type='checkbox' v-model='t.isChecked')
+    label(:for='t.id' :class="t.isChecked && 'line-through'") {{t.name}}
 </template>
 
 <script>
@@ -32,11 +34,6 @@ export default {
       this.$store.commit('checkTodo',id)
     }
   }
-  // watch:{
-  //   filter(currentFilter){
-  //     console.log(currentFilter);
-  //   }
-  // }
 }
 </script>
 

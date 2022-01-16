@@ -1,28 +1,30 @@
 import { createStore } from 'vuex'
+import { nanoid } from 'nanoid'
+
 const save=(state)=>localStorage.setItem('todos',JSON.stringify(state))
-export const store = createStore({
+
+const store = createStore({
   state () {
     return {
-      todos:[
-        {name:'123',isChecked:false,id:0},
-        {name:'234',isChecked:false,id:1},
-        {name:'345',isChecked:false,id:2},
-      ]
+      todos:[],
     }
   },
   mutations: {
     checkTodo (state,id) {
-      state.todos[id].isChecked=!state.todos[id].isChecked
+      state.todos.forEach(t=>{
+        t.id===id && (t.isChecked=!t.isChecked)
+      })
       save(state.todos)
     },
     clearCompleted(state){
       state.todos.map(t=>t.isChecked=false)
+      save(state.todos)
     },
     addTodo(state,newTodo){
       state.todos.push({
         name:newTodo,
         isChecked:false,
-        id:state.todos.length
+        id:nanoid()
       })
       save(state.todos)
     },
@@ -34,11 +36,9 @@ export const store = createStore({
     undoneCount(state){
       return state.todos.filter(t=>t.isChecked==false).length
     },
-    isDisabled(state,getters){
+    isClearButtonDisabled(state,getters){
       return state.todos.length==getters.undoneCount ? true:false
     },
-    todos(state){
-      return state.todos
-    }
   }
 })
+export default store
